@@ -4,9 +4,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  text-align: center;
   height: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -15,12 +17,11 @@
 }
 
 .App-header {
-  height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
   font-size: 0.75rem;
+  justify-content: space-between;
 }
 
 code {

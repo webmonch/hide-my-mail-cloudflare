@@ -20,10 +20,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@extension/i18n": "workspace:*",
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
-    "@extension/i18n": "workspace:*",
-    "@extension/ui": "workspace:*"
+    "@extension/ui": "workspace:*",
+    "@faker-js/faker": "^9.6.0",
+    "cloudflare": "^4.2.0"
   },
   "devDependencies": {
     "@extension/tailwindcss-config": "workspace:*",
