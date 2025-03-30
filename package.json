@@ -1,13 +1,13 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
-  "version": "0.4.3",
-  "description": "chrome extension boilerplate",
+  "name": "hide-my-mail-cloudflare",
+  "version": "1.0.0",
+  "description": "chrome extension to create random private emails that are forwarded to your inbox",
   "license": "MIT",
   "private": true,
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
+    "url": "https://github.com/webmonch/hide-my-mail-cloudflare.git"
   },
   "type": "module",
   "scripts": {

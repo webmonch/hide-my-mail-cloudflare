@@ -51,7 +51,7 @@ export const EmailList = (props: EmailListProps) => {
           <img src={chrome.runtime.getURL('popup/settings.svg')} className="w-[20px] h-[20px]" alt="settings button" />
         </button>
 
-        <div className="font-bold text-[16px] py-1">Mail boxes</div>
+        <div className="font-bold text-[16px] py-1">Mailboxes</div>
 
         <button onClick={onOpenAddNew}>
           <img src={chrome.runtime.getURL('popup/plus.svg')} className="w-[20px] h-[20px]" alt="settings button" />
