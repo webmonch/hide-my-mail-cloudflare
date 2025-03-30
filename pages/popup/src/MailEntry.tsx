@@ -26,12 +26,12 @@ export const MailEntry = ({ rule, onEditRule }: MailEntryProps) => {
           onCopyAddress();
         }
       }}
-      className="bg-slate-100 cursor-pointer group hover:bg-slate-200  text-[12px] rounded-sm flex">
+      className="bg-slate-100 cursor-pointer group hover:bg-slate-200  text-[12px] flex">
       <div className="font-semibold py-1 px-2 flex-grow">{rule.name.name!}</div>
       {showCopyLabel && <div className="flex items-center mr-1">Copied!</div>}
       <button
         onClick={() => onEditRule(rule)}
-        className="py-1 px-[6px] bg-slate-300 hover:bg-slate-400 flex-shrink-0 rounded-sm hidden  group-hover:flex items-center justify-center">
+        className="py-1 px-[6px] bg-slate-300 hover:bg-slate-400 flex-shrink-0  hidden  group-hover:flex items-center justify-center">
         <Edit />
       </button>
     </div>

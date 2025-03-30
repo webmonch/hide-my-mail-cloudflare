@@ -313,156 +313,6 @@ importers:
         specifier: ^0.8.2
         version: 0.8.2
 
-  pages/content:
-    dependencies:
-      '@extension/env':
-        specifier: workspace:*
-        version: link:../../packages/env
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@extension/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-    devDependencies:
-      '@extension/hmr':
-        specifier: workspace:*
-        version: link:../../packages/hmr
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
-  pages/content-runtime:
-    devDependencies:
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
-  pages/content-ui:
-    dependencies:
-      '@extension/env':
-        specifier: workspace:*
-        version: link:../../packages/env
-      '@extension/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@extension/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-      '@extension/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-    devDependencies:
-      '@extension/hmr':
-        specifier: workspace:*
-        version: link:../../packages/hmr
-      '@extension/tailwindcss-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
-  pages/devtools:
-    dependencies:
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-    devDependencies:
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
-  pages/devtools-panel:
-    dependencies:
-      '@extension/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@extension/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-    devDependencies:
-      '@extension/tailwindcss-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
-  pages/new-tab:
-    dependencies:
-      '@extension/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@extension/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-      '@extension/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-    devDependencies:
-      '@extension/tailwindcss-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-      sass:
-        specifier: 1.79.4
-        version: 1.79.4
-
-  pages/options:
-    dependencies:
-      '@extension/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@extension/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-      '@extension/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-    devDependencies:
-      '@extension/tailwindcss-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
   pages/popup:
     dependencies:
       '@extension/i18n':
@@ -483,31 +333,6 @@ importers:
       cloudflare:
         specifier: ^4.2.0
         version: 4.2.0
-    devDependencies:
-      '@extension/tailwindcss-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@extension/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@extension/vite-config':
-        specifier: workspace:*
-        version: link:../../packages/vite-config
-
-  pages/side-panel:
-    dependencies:
-      '@extension/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
-      '@extension/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      '@extension/storage':
-        specifier: workspace:*
-        version: link:../../packages/storage
-      '@extension/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
     devDependencies:
       '@extension/tailwindcss-config':
         specifier: workspace:*
@@ -8691,7 +8516,8 @@ snapshots:
 
   immediate@3.0.6: {}
 
-  immutable@4.3.7: {}
+  immutable@4.3.7:
+    optional: true
 
   import-fresh@3.3.0:
     dependencies:
@@ -9965,6 +9791,7 @@ snapshots:
       chokidar: 4.0.1
       immutable: 4.3.7
       source-map-js: 1.2.1
+    optional: true
 
   scheduler@0.25.0: {}
 
