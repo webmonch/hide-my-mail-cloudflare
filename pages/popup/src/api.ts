@@ -1,4 +1,4 @@
-import type { CloudflareEmailRoutingSettings, CloudflareResonse, RuleName, UnusedRule, UsedRule } from './types';
+import type { CloudflareEmailRoutingSettings, CloudflareResonse, RuleName, MailRule } from './types';
 import type Cloudflare from 'cloudflare';
 import { type EmailRoutingRule } from 'cloudflare/resources/email-routing.mjs';
 import { APP_RULE_PREFIX, EMPTY_LABEL, getRandomEmail, SEPARATOR, sleep } from './utils';
@@ -42,49 +42,28 @@ export const getAllRules = async (cf: Cloudflare, zoneId: string): Promise<Email
   return existingRules;
 };
 
-export const getUsedAppRules = async (cf: Cloudflare, zoneId: string): Promise<UsedRule[]> => {
+export const getUsedAppRules = async (cf: Cloudflare, zoneId: string): Promise<MailRule[]> => {
   const allRules = await getAllRules(cf, zoneId);
   const appRules = allRules.filter(r => r.name?.startsWith(APP_RULE_PREFIX) && parseName(r.name).name);
-  const result: UsedRule[] = appRules.map(r => ({
-    id: r.id!,
-    name: parseName(r.name!),
-    email: r.matchers![0].value,
-    forwardsToEmail: r.actions![0].value[0],
-  }));
-
+  const result: MailRule[] = appRules.map(r => convertRule(r));
   return result;
 };
 
-export const getUnusedAppRules = async (cf: Cloudflare, zoneId: string): Promise<UnusedRule[]> => {
+export const getUnusedAppRules = async (cf: Cloudflare, zoneId: string): Promise<MailRule[]> => {
   const allRules = await getAllRules(cf, zoneId);
   const appRules = allRules.filter(r => r.name?.startsWith(APP_RULE_PREFIX) && !parseName(r.name).name);
-  const result: UnusedRule[] = appRules.map(r => ({
-    id: r.id!,
-    name: parseName(r.name!),
-    email: r.matchers![0].value,
-    forwardsoEmail: r.actions![0].value[0],
-  }));
-
+  const result: MailRule[] = appRules.map(r => convertRule(r));
   result.sort((a, b) => a.name.createdAt.getTime() - b.name.createdAt.getTime());
-
   return result;
 };
 
-const parseName = (fullName: string): RuleName => {
-  const parts = fullName.split(SEPARATOR);
-  const createdAt = new Date(parseInt(parts[1], 10));
-  const name = parts[2] !== EMPTY_LABEL ? parts[2] : undefined;
-  const desc = parts[3] !== EMPTY_LABEL ? parts[3] : undefined;
-
-  return {
-    createdAt,
-    name,
-    desc,
-  };
-};
-
-export const createForwardingRule = async (cf: Cloudflare, zoneId: string, destAddr: string, domain: string) => {
-  await cf.emailRouting.rules.create({
+export const createForwardingRule = async (
+  cf: Cloudflare,
+  zoneId: string,
+  destAddr: string,
+  domain: string,
+): Promise<MailRule> => {
+  const res = await cf.emailRouting.rules.create({
     zone_id: zoneId,
     name: `${APP_RULE_PREFIX}${SEPARATOR}${new Date().getTime()}${SEPARATOR}${EMPTY_LABEL}${SEPARATOR}${EMPTY_LABEL}`,
     matchers: [
@@ -101,9 +80,11 @@ export const createForwardingRule = async (cf: Cloudflare, zoneId: string, destA
       },
     ],
   });
+
+  return convertRule(res);
 };
 
-export const updateForwardingRule = async (cf: Cloudflare, zoneId: string, rule: UnusedRule, destAddr: string) => {
+export const updateForwardingRule = async (cf: Cloudflare, zoneId: string, rule: MailRule) => {
   await cf.emailRouting.rules.update(rule.id, {
     zone_id: zoneId,
     name: `${APP_RULE_PREFIX}${SEPARATOR}${new Date().getTime()}${SEPARATOR}${rule.name.name}${SEPARATOR}${rule.name.desc || EMPTY_LABEL}`,
@@ -117,9 +98,15 @@ export const updateForwardingRule = async (cf: Cloudflare, zoneId: string, rule:
     actions: [
       {
         type: 'forward',
-        value: [destAddr],
+        value: [rule.forwardsToEmail],
       },
     ],
+  });
+};
+
+export const deleteForwardingRule = async (cf: Cloudflare, zoneId: string, rule: MailRule) => {
+  await cf.emailRouting.rules.delete(rule.id, {
+    zone_id: zoneId,
   });
 };
 
@@ -149,3 +136,23 @@ export async function waitForSettingsToSync({
     await sleep(intervalMs);
   }
 }
+
+const convertRule = (r: EmailRoutingRule): MailRule => ({
+  id: r.id!,
+  name: parseName(r.name!),
+  email: r.matchers![0].value,
+  forwardsToEmail: r.actions![0].value[0],
+});
+
+const parseName = (fullName: string): RuleName => {
+  const parts = fullName.split(SEPARATOR);
+  const createdAt = new Date(parseInt(parts[1], 10));
+  const name = parts[2] !== EMPTY_LABEL ? parts[2] : undefined;
+  const desc = parts[3] !== EMPTY_LABEL ? parts[3] : undefined;
+
+  return {
+    createdAt,
+    name,
+    desc,
+  };
+};

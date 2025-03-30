@@ -5,20 +5,24 @@ import { useState } from 'react';
 import { Settings } from './Settings';
 import { EmailList } from './EmailList';
 import { CreateEmail } from './CreateEmail';
+import { type MailRule } from './types';
 
 export type Screen = 'main' | 'settings' | 'create_email';
 
 const Popup = () => {
   const settings = useStorage(settingsStorage);
   const [screen, setScreen] = useState<Screen>('main');
+  const [selectedRule, setSelectedRule] = useState<MailRule>();
 
   const inited = settings.inited;
 
   return (
     <div className={`App bg-white`}>
       {(!inited || screen === 'settings') && <Settings setScreen={setScreen} />}
-      {inited && screen === 'main' && <EmailList setScreen={setScreen} />}
-      {inited && screen === 'create_email' && <CreateEmail setScreen={setScreen} />}
+      {inited && screen === 'main' && <EmailList setScreen={setScreen} setSelectedRule={setSelectedRule} />}
+      {inited && screen === 'create_email' && (
+        <CreateEmail setScreen={setScreen} selectedRule={selectedRule} setSelectedRule={setSelectedRule} />
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { Screen } from './Popup';
 import { createForwardingRule, getAllRules, getEmailRoutingSettings, waitForSettingsToSync } from './api';
 import { getCloudflare } from './utils';
+import { InputPass } from './InputPass';
 
 type SettingsProps = {
   setScreen: (screen: Screen) => void;
@@ -202,35 +203,17 @@ export const Settings = (props: SettingsProps) => {
         <div>
           Cloudflare API key with{' '}
           <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank">
-            <strong>Email Routing</strong>
+            <strong>proper permissions</strong>
           </a>{' '}
-          permission
         </div>
-        <input
-          type="password"
-          value={apiKey}
-          onChange={e => setApiKey(e.target.value)}
-          className="p-[6px] bg-slate-700 focus:rounded-none outline-none text-white placeholder:text-slate-300"
-          placeholder="..."
-        />
+
+        <InputPass val={apiKey} setVal={setApiKey} />
 
         <div className="mt-1">Zone ID</div>
-        <input
-          type="text"
-          value={zone}
-          onChange={e => setZone(e.target.value)}
-          className="p-[6px] bg-slate-700 focus:rounded-none outline-none text-white placeholder:text-slate-300"
-          placeholder="..."
-        />
+        <InputPass val={zone} setVal={setZone} />
 
         <div className="mt-1">Account ID</div>
-        <input
-          type="text"
-          value={accountId}
-          onChange={e => setAaccountId(e.target.value)}
-          className="p-[6px] bg-slate-700 focus:rounded-none outline-none text-white placeholder:text-slate-300"
-          placeholder="..."
-        />
+        <InputPass val={accountId} setVal={setAaccountId} />
 
         <div className="mt-1">Destination email address</div>
         <input

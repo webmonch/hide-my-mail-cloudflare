@@ -2,18 +2,20 @@ import { useEffect, useState } from 'react';
 import type { Screen } from './Popup';
 import { useStorage } from '@extension/shared';
 import { settingsStorage } from '@extension/storage';
-import { type UsedRule } from './types';
+import { type MailRule } from './types';
 import { getCloudflare } from './utils';
 import { getUsedAppRules } from './api';
+import { MailEntry } from './MailEntry';
 
 type EmailListProps = {
   setScreen: (screen: Screen) => void;
+  setSelectedRule: (rule?: MailRule) => void;
 };
 
 export const EmailList = (props: EmailListProps) => {
   const settings = useStorage(settingsStorage);
   const [loading, setLoading] = useState(false);
-  const [rules, setRules] = useState<UsedRule[]>();
+  const [rules, setRules] = useState<MailRule[]>();
 
   useEffect(() => {
     if (settings.inited && settings.cloudflareApiKey && settings.zoneId) {
@@ -32,7 +34,13 @@ export const EmailList = (props: EmailListProps) => {
   const onOpenSettings = () => {
     props.setScreen('settings');
   };
+
   const onOpenAddNew = () => {
+    props.setScreen('create_email');
+  };
+
+  const onEditRule = (rule: MailRule) => {
+    props.setSelectedRule(rule);
     props.setScreen('create_email');
   };
 
@@ -50,20 +58,20 @@ export const EmailList = (props: EmailListProps) => {
         </button>
       </header>
 
-      <main className="flex flex-col flex-grow items-center justify-center text-black">
-        {loading && (
+      {loading && (
+        <div className="w-full h-full flex items-center justify-center">
           <img src={chrome.runtime.getURL('popup/spinner.svg')} className="w-[16px] h-[16px]" alt="spinner" />
-        )}
+        </div>
+      )}
+
+      <main className=" text-black overflow-y-auto">
         {rules && rules.length === 0 && <div>No rules</div>}
 
         {rules && rules.length > 0 && (
-          <div className="w-full h-full overflow-y-auto py-2">
+          <div className="py-2">
             <div className="flex flex-col gap-1">
               {rules.map(rule => (
-                <div className="bg-slate-100 cursor-pointer hover:bg-slate-200 py-1 px-2 text-[14px] rounded-sm">
-                  <div className="font-semibold">{rule.name.name!}</div>
-                  <div className="text-[12px]">{rule.email}</div>
-                </div>
+                <MailEntry rule={rule} onEditRule={onEditRule} />
               ))}
             </div>
           </div>

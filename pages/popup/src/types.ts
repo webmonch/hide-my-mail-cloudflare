@@ -26,12 +26,9 @@ export type RuleName = {
   desc?: string;
 };
 
-export type UnusedRule = {
+export type MailRule = {
   name: RuleName;
   email: string;
   id: string;
-};
-
-export type UsedRule = UnusedRule & {
   forwardsToEmail: string;
 };
