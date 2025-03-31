@@ -4,7 +4,8 @@
 
 ## Hide My Mail (with Cloudflare) browser extension
     
-![Screen Recording 2025-03-30 at 20 58 11](https://github.com/user-attachments/assets/6e730e5c-5803-44ce-bafa-968b8d3c960d)
+![hide-my-mail-promo](https://github.com/user-attachments/assets/2ab2ad68-3860-45b5-9bdf-e5a359b6b5f7)
+
 
 </div>
 
