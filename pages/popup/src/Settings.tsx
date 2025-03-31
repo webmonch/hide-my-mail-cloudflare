@@ -30,6 +30,14 @@ const ErrorDetails: Partial<Record<SetupError, ErrorDetail>> = {
     title: 'Destination email not verified',
     desc: 'You should get an email with verification link soon.',
   },
+  not_enabled: {
+    title: 'Email Routing not enabled',
+    desc: 'Please enable Email Routing in Cloudflare settings',
+  },
+  not_ready: {
+    title: 'Email Routing not ready',
+    desc: 'Please enable Email Routing in Cloudflare settings',
+  },
 };
 
 export const Settings = (props: SettingsProps) => {
@@ -122,7 +130,7 @@ export const Settings = (props: SettingsProps) => {
     }
 
     const existingRules = await getAllRules(cf, zoneId);
-    const maxRules = 10;
+    const maxRules = 180;
     const missingAppRules = maxRules - existingRules.length;
 
     if (missingAppRules > 0) {
@@ -234,7 +242,7 @@ export const Settings = (props: SettingsProps) => {
       <footer className="flex flex-col gap-1">
         {status && <div className="p-1/2 bg-gray-300 text-center">{status}</div>}
         {err && (
-          <div className="p-1 bg-red-400 text-white flex flex-col gap-1">
+          <div className="p-1 bg-red-400 text-white flex flex-col gap-1 my-1">
             <div className="text-[14px] font-semibold">{err.title}</div>
             <div>{err.desc}</div>
           </div>
