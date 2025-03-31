@@ -13,10 +13,13 @@
 
 This extension allows you to create unique, random email addresses that forward to your real inbox. 
 
+**This is a client-only extension, none of your data is collected at any point.**
+
 It uses Cloudflare Email Routes under the hood, so you **need to have Cloudflare account with a domain** to use it.
 
 Thanks to [Jonghakseo](https://jonghakseo.github.io/) for his amazing [Extension Boilerplate](https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite).
 You can ready full documentation on how to extend this extension in his repo.
+
 
 
 
@@ -28,6 +31,10 @@ You can ready full documentation on how to extend this extension in his repo.
 - Works on any OS
 
 ## Getting started
+
+[Read SETUP.md for instructions](https://github.com/webmonch/hide-my-mail-cloudflare/blob/main/SETUP.md)
+
+## Build it yourself
 
 1. When you're using Windows run this:
     - `git config --global core.eol lf`
