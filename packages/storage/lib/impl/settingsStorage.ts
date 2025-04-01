@@ -1,7 +1,7 @@
 import type { BaseStorage } from '../base/index.js';
 import { createStorage, StorageEnum } from '../base/index.js';
 
-type ExtSettings = {
+export type ExtSettings = {
   cloudflareApiKey?: string;
   destinationEmail?: string;
   zoneId?: string;

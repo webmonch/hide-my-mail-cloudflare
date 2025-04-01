@@ -30,6 +30,7 @@ const manifest = {
   version: packageJson.version,
   description: '__MSG_extensionDescription__',
   permissions: ['storage'],
+  host_permissions: ['https://api.cloudflare.com/*'],
   action: {
     default_popup: 'popup/index.html',
     default_icon: 'icon-34.png',

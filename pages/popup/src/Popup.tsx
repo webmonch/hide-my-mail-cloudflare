@@ -1,7 +1,7 @@
 import '@src/Popup.css';
 import { useStorage, withErrorBoundary, withSuspense } from '@extension/shared';
 import { settingsStorage } from '@extension/storage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Settings } from './Settings';
 import { EmailList } from './EmailList';
 import { CreateEmail } from './CreateEmail';
@@ -13,6 +13,12 @@ const Popup = () => {
   const settings = useStorage(settingsStorage);
   const [screen, setScreen] = useState<Screen>('main');
   const [selectedRule, setSelectedRule] = useState<MailRule>();
+
+  useEffect(() => {
+    if (screen !== 'create_email') {
+      setSelectedRule(undefined);
+    }
+  }, [screen]);
 
   const inited = settings.inited;
 

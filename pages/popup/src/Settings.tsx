@@ -1,6 +1,6 @@
 import { useStorage } from '@extension/shared';
-import { settingsStorage } from '@extension/storage';
-import { useState } from 'react';
+import { type ExtSettings, settingsStorage } from '@extension/storage';
+import { useRef, useState } from 'react';
 import type { Screen } from './Popup';
 import { createForwardingRule, getAllRules, getEmailRoutingSettings, waitForSettingsToSync } from './api';
 import { getCloudflare } from './utils';
@@ -50,6 +50,8 @@ export const Settings = (props: SettingsProps) => {
   const [err, setErr] = useState<ErrorDetail>();
   const [syncing, setSyncing] = useState(false);
   const [status, setStatus] = useState<string>();
+  const settingsRef = useRef<ExtSettings>({});
+  settingsRef.current = settings;
 
   const waitForSync = async () => {
     setSyncing(true);
@@ -98,10 +100,8 @@ export const Settings = (props: SettingsProps) => {
       await waitForSync();
     }
 
-    await settingsStorage.update({
-      ...settings,
-      accountDomain: routingSettings.name,
-    });
+    settingsRef.current.accountDomain = routingSettings.name;
+    await settingsStorage.update(settingsRef.current);
 
     // At this point email settings are enabled, synced and ready to use
 
@@ -159,14 +159,16 @@ export const Settings = (props: SettingsProps) => {
     setErr(undefined);
     setIsLoading(true);
 
-    // Save values to user don't have to fill each time even if they are wrong
-    await settingsStorage.update({
+    settingsRef.current = {
       ...settings,
       cloudflareApiKey: apiKey,
       destinationEmail: destAddr,
       zoneId: zone,
       accountId,
-    });
+    };
+
+    // Save values to user don't have to fill each time even if they are wrong
+    await settingsStorage.update(settingsRef.current);
 
     const setupError = await runSetupFlow(zone, apiKey, accountId);
     setStatus(undefined);
@@ -174,10 +176,8 @@ export const Settings = (props: SettingsProps) => {
     if (setupError) {
       setErr(ErrorDetails[setupError]);
     } else {
-      await settingsStorage.update({
-        ...settings,
-        inited: true,
-      });
+      settingsRef.current.inited = true;
+      await settingsStorage.update(settingsRef.current);
       onOpenMainScreen();
     }
 
@@ -210,7 +210,7 @@ export const Settings = (props: SettingsProps) => {
       <main className="flex flex-col flex-grow h-full gap-[6px] mt-4">
         <div>
           Cloudflare API key with{' '}
-          <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank">
+          <a href="https://github.com/webmonch/hide-my-mail-cloudflare/blob/main/SETUP.md#section-3" target="_blank">
             <strong>proper permissions</strong>
           </a>{' '}
         </div>
