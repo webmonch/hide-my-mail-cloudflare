@@ -2,7 +2,7 @@
 
 <div align="center">
 
-## Hide My Mail (with Cloudflare) browser extension
+## Hide My Email (with Cloudflare) browser extension
     
 ![hide-my-mail-promo](https://github.com/user-attachments/assets/2ab2ad68-3860-45b5-9bdf-e5a359b6b5f7)
 
