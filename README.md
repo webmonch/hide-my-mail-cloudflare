@@ -34,6 +34,10 @@ You can ready full documentation on how to extend this extension in his repo.
 
 [Read SETUP.md for instructions](https://github.com/webmonch/hide-my-mail-cloudflare/blob/main/SETUP.md)
 
+## Download from Chrome Webstore
+
+[Link](https://chromewebstore.google.com/detail/hide-my-mail/ilffnjijpekalaakkcckkeggijlnfgba)
+
 ## Build it yourself
 
 1. When you're using Windows run this:
