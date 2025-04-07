@@ -43,7 +43,7 @@
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
     "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.20.0",
+    "@eslint/js": "^9.24.0",
     "@types/chrome": "0.0.304",
     "@types/eslint-plugin-jsx-a11y": "^6.10.0",
     "@types/eslint__eslintrc": "^2.1.2",
