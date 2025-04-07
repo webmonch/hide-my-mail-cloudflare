@@ -25,8 +25,8 @@ importers:
         specifier: ^9.20.0
         version: 9.20.0
       '@types/chrome':
-        specifier: 0.0.304
-        version: 0.0.304
+        specifier: 0.0.313
+        version: 0.0.313
       '@types/eslint-plugin-jsx-a11y':
         specifier: ^6.10.0
         version: 6.10.0
@@ -1362,8 +1362,8 @@ packages:
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
 
-  '@types/chrome@0.0.304':
-    resolution: {integrity: sha512-ms9CLILU+FEMK7gcmgz/Mtn2E81YQWiMIzCFF8ktp98EVNIIfoqaDTD4+ailOCq1sGjbnEmfJxQ1FAsQtk5M3A==}
+  '@types/chrome@0.0.313':
+    resolution: {integrity: sha512-9R5T7gTaYZhkxlu+Ho4wk9FL+y/werWQY2yjGWSqCuiTsqS7nL/BE5UMTP6rU7J+oIG2FRKqrEycHhJATeltVA==}
 
   '@types/doctrine@0.0.9':
     resolution: {integrity: sha512-eOIHzCUSH7SMfonMG1LsC2f8vxBFtho6NGBznK41R84YzPuvSBzrhEps33IsQiOW9+VL6NQ9DbjQJznk/S4uRA==}
@@ -1392,8 +1392,8 @@ packages:
   '@types/filewriter@0.0.33':
     resolution: {integrity: sha512-xFU8ZXTw4gd358lb2jw25nxY9QAgqn2+bKKjKOYfNCzN4DKCFetK7sPtrlpg66Ywe3vWY9FNxprZawAh9wfJ3g==}
 
-  '@types/har-format@1.2.15':
-    resolution: {integrity: sha512-RpQH4rXLuvTXKR0zqHq3go0RVXYv/YVqv4TnPH95VbwUxZdQlK1EtcMvQvMpDngHbt13Csh9Z4qT9AbkiQH5BA==}
+  '@types/har-format@1.2.16':
+    resolution: {integrity: sha512-fluxdy7ryD3MV6h8pTfTYpy/xQzCFC7m89nOH9y94cNqJ1mDIDPut7MnRHI3F6qRmh/cT2fUjG1MLdCNb4hE9A==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -4804,10 +4804,10 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@types/chrome@0.0.304':
+  '@types/chrome@0.0.313':
     dependencies:
       '@types/filesystem': 0.0.36
-      '@types/har-format': 1.2.15
+      '@types/har-format': 1.2.16
 
   '@types/doctrine@0.0.9': {}
 
@@ -4838,7 +4838,7 @@ snapshots:
 
   '@types/filewriter@0.0.33': {}
 
-  '@types/har-format@1.2.15': {}
+  '@types/har-format@1.2.16': {}
 
   '@types/json-schema@7.0.15': {}
 
